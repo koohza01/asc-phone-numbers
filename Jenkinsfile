@@ -41,7 +41,7 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                withKubeConfig([credentialsId: 'kubeconfig-cred']) {
+                withEnv(["KUBECONFIG=C:\\Users\\koohz\\.kube\\config"]) {
                     bat 'kubectl apply -f k8s\\deployment.yaml'
                     bat 'kubectl apply -f k8s\\services.yaml'
                 }
