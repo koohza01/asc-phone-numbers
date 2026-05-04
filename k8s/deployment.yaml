@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: go-service
+  template:
+    metadata:
+      labels:
+        app: go-service
+    spec:
+      containers:
+      - name: asc-phone-numbers
+        image: koohza01/asc-phone-numbers:latest 
+        ports:
+        - containerPort: 8080
+        

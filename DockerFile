@@ -1,11 +1,15 @@
-FROM golang:1.22 AS builder
+FROM golang:1.26.2 AS builder
 WORKDIR /app
-COPY . .
+
+COPY go.mod .
 RUN go mod tidy
-RUN go build -o asc-phone-numbers-service
+
+COPY app/ ./app/
+
+RUN go build -o asc-phone-numbers-service ./app/Main.go
 
 FROM debian:bookworm-slim
 WORKDIR /app
-COPY --from=builder /app/go-service .
+COPY --from=builder /app/asc-phone-numbers-service .
 EXPOSE 8080
-CMD ["./go-service"]
+CMD ["./asc-phone-numbers-service"]
