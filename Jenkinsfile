@@ -5,6 +5,9 @@ pipeline {
         IMAGE = "asc-phone-numbers"
         TAG = "latest"
     }
+    triggers {
+        githubPush()
+    }
     stages {
         stage('Checkout') {
             steps {
