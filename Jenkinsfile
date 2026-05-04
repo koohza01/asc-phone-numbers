@@ -30,6 +30,14 @@ pipeline {
                 }
             }
         }
+        stage('Test KubeConfig') {
+            steps {
+                withKubeConfig([credentialsId: 'kubeconfig-cred']) {
+                    bat 'kubectl config current-context'
+                    bat 'kubectl get nodes'
+                }
+            }
+        }
         stage('Deploy to Kubernetes') {
             steps {
                 withKubeConfig([credentialsId: 'kubeconfig-cred']) {
