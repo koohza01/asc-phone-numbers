@@ -32,8 +32,9 @@ pipeline {
         }
         stage('Test KubeConfig') {
             steps {
-                withKubeConfig([credentialsId: 'kubeconfig-cred']) {
+                withEnv(["KUBECONFIG=C:\\Users\\koohz\\.kube\\config"]) {
                     bat 'kubectl config current-context'
+                    bat 'kubectl cluster-info'
                     bat 'kubectl get nodes'
                 }
             }
