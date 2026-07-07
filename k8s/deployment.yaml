@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: go-service
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: go-service
@@ -15,7 +15,6 @@ spec:
       containers:
       - name: asc-phone-numbers
         image: koohza01/asc-phone-numbers:latest
-        imagePullPolicy: Always 
         ports:
         - containerPort: 8080
         
