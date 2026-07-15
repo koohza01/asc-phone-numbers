@@ -42,6 +42,8 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 withEnv(["KUBECONFIG=C:\\Users\\koohz\\.kube\\config"]) {
+                    bat 'kubectl delete deployment go-service'
+                    bat 'kubectl delete service go-service'
                     bat 'kubectl apply -f k8s\\deployment.yaml'
                     bat 'kubectl apply -f k8s\\services.yaml'
                 }
